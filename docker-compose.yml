@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+  app:
+    build: .
+    container_name: hammer_hue_web
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    environment:
+      - APP_NAME=hammer_hue
+    volumes:
+      - ./:/home/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
