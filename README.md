@@ -1,12 +1,12 @@
 # Starting a new project
 ## Initial Setup
 1. Clone the repo
-`git clone git@github.com:plusonedev/rails-docker-template.git {app_name} && cd {app_name}`
+`$ git clone git@github.com:plusonedev/rails-docker-template.git {app_name} && cd {app_name}`
 2. set environmental variables in .env file
 3. Initialize the new rails app - I prefer postgresql (this will overwrite this file, just keep it open and undo the changes).
-`docker-compose run --no-deps app rails new . --force --database=postgresql`
+`$ docker-compose run --no-deps app rails new . --force --database=postgresql`
 4. Build the images
-`docker-compose build`
+`$ docker-compose build`
 5. Edit database config in rails
 ```
 # config/database.yml
@@ -29,6 +29,9 @@ test:
   database: myapp_test
 ```
 6. Spin up the project
-`docker-compose up`
+`$ docker-compose up`
 7. Once everything is up and running, create the database
-`docker-compose run app rake db:create`
+`$ docker-compose run app rake db:create`
+
+8. Update remote origin git repo
+`$ git remote set-url origin https://github.com/USERNAME/REPOSITORY.git`
